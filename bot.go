@@ -28,6 +28,8 @@ func New(user, password, server string, verify bool, tz string, feeds Feeds) (b 
 
 	router := bottom.NewRouter()
 	router.AddRoute(`get\s+headlines`, func(_, channel string, _ []string) (err error) {
+		b.bottom.Client.Cmd.Message(channel, "Getting headlines...")
+
 		headlines, err := feeds.Headlines()
 		if err != nil {
 			return
