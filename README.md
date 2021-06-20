@@ -1,6 +1,6 @@
-# IRC Bot
+# IRC News Bot
 
-Do some stuff over IRC
+Read, collate, and return a series of RSS feeds into an IRC channel or chat
 
 This bot makes a couple of assumptions:
 
@@ -13,6 +13,8 @@ This bot requires the following env vars:
 * `$SASL_PASSWORD` - the password to connect with
 * `$SERVER` - IRC connection details, as `irc://server:6667` or `ircs://server:6697` (`ircs` implies irc-over-tls)
 * `$VERIFY_TLS` - Verify TLS, or sack it off. This is of interest to people, like me, running an ircd on localhost with a self-signed cert. Matches "true" as true, and anything else as false
+* `$RSS_FEEDS` - A comma separated list of RSS Feeds to parse and load headlines from
+* `$TZ` - Timezone to display headlines in
 
 The SASL mechanism is hardcoded to PLAIN.
 

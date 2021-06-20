@@ -5,7 +5,7 @@ import (
 )
 
 const (
-	Nick = "my-bot"
+	Nick = "newsie"
 	Chan = "#dashboard"
 )
 
@@ -14,10 +14,12 @@ var (
 	Password  = os.Getenv("SASL_PASSWORD")
 	Server    = os.Getenv("SERVER")
 	VerifyTLS = os.Getenv("VERIFY_TLS") == "true"
+	RssFeeds  = os.Getenv("RSS_FEEDS")
+	Timezone  = os.Getenv("TZ")
 )
 
 func main() {
-	c, err := New(Username, Password, Server, VerifyTLS)
+	c, err := New(Username, Password, Server, VerifyTLS, Timezone, NewFeeds(RssFeeds))
 	if err != nil {
 		panic(err)
 	}
