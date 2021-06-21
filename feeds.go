@@ -63,7 +63,7 @@ func dedupeHeadlines(headlines []Headline) (deduped []Headline) {
 	deduped = make([]Headline, 0)
 
 	tmp := make(map[string]Headline)
-	for _, hl := range h {
+	for _, hl := range headlines {
 		tmp[hl.Title] = hl
 	}
 
