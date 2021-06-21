@@ -1,4 +1,4 @@
-# IRC News Bot
+# Newsie
 
 Read, collate, and return a series of RSS feeds into an IRC channel or chat
 

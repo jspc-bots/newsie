@@ -3,7 +3,7 @@ package main
 import (
 	"time"
 
-	"github.com/jspc/bottom"
+	"github.com/jspc-bots/bottom"
 	"github.com/lrstanley/girc"
 )
 
