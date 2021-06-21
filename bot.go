@@ -1,10 +1,15 @@
 package main
 
 import (
+	"fmt"
 	"time"
 
 	"github.com/jspc-bots/bottom"
 	"github.com/lrstanley/girc"
+)
+
+var (
+	MaxWidth = 80
 )
 
 type Bot struct {
@@ -36,7 +41,7 @@ func New(user, password, server string, verify bool, tz string, feeds Feeds) (b 
 		}
 
 		for _, h := range headlines {
-			b.bottom.Client.Cmd.Messagef(channel, "%s: %s (Read: %s)", h.Published.In(timezone).Format("Jan 2 15:04"), h.Title, h.Url)
+			b.bottom.Client.Cmd.Messagef(channel, "📰 %s: %s     (Read: %s)", h.Published.In(timezone).Format("Jan 2 15:04"), rpad(h.Title, MaxWidth), h.Url)
 		}
 
 		return
@@ -45,4 +50,16 @@ func New(user, password, server string, verify bool, tz string, feeds Feeds) (b 
 	b.bottom.Middlewares.Push(router)
 
 	return
+}
+
+func rpad(s string, widest int) string {
+	if len(s) == widest {
+		return s
+	}
+
+	if len(s) >= (widest - 3) {
+		return fmt.Sprintf("%s...", string(s[:widest-3]))
+	}
+
+	return fmt.Sprintf("%-*s", widest, s)
 }
